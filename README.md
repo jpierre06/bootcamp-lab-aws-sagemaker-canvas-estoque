@@ -20,28 +20,53 @@ Antes de começar, certifique-se de ter uma conta na AWS. Se precisar de ajuda p
 
 ### 1. Selecionar Dataset
 
--   Navegue até a pasta `datasets` deste repositório. Esta pasta contém os datasets que você poderá escolher para treinar e testar seu modelo de ML. Sinta-se à vontade para gerar/enriquecer seus próprios datasets, quanto mais você se engajar, mais relevante esse projeto será em seu portfólio.
--   Escolha o dataset que você usará para treinar seu modelo de previsão de estoque.
--   Faça o upload do dataset no SageMaker Canvas.
+-   Foi criado dataset de movimentação de estoque mais completo.
+-   O dataset possui as seguintes colunas:
+    - ID_PRODUTO;
+    - DATA_MOVIMENTACAO;
+    - ESTOQUE_INCIAL;
+    - QUANTIDADE_COMPRA;
+    - QUANTIDADE_VENDA;
+    - ESTOQUE_FINAL;
+    - ESTOQUE_SEGURANCA;
+    - COMPRA_MINIMA;
+    - PRECO_VENDA
+      
+-   O dataset possui dados de movimentacao de estoque e preço de venda de 25 itens durante o período de 01/08/2024 a 31/08/2024
+-   Foi realizado o upload do dataset no SageMaker Canvas com nome de movimentacao_estoque_2.
+
+
 
 ### 2. Construir/Treinar
 
--   No SageMaker Canvas, importe o dataset que você selecionou.
--   Configure as variáveis de entrada e saída de acordo com os dados.
--   Inicie o treinamento do modelo. Isso pode levar algum tempo, dependendo do tamanho do dataset.
+-   A coluna QUANTIDADE_COMPRA foi definida como variável target;
+-   A coluna de ID_PRODUTO como identificador do produto;
+-   E a coluna DATA_MOVIMENTACAO como Timestamp
+-   Foi utilizado o modelo Time series forecasting
+-   Todas as demais colunas foram definidas automaticamente como feature values
+- 
 
 ### 3. Analisar
 
--   Após o treinamento, examine as métricas de performance do modelo.
--   Verifique as principais características que influenciam as previsões.
--   Faça ajustes no modelo se necessário e re-treine até obter um desempenho satisfatório.
+-   O modelo obteve as seguintes métricas de acuracidade:
+    -   ![image](https://github.com/user-attachments/assets/bafd8636-e618-4115-8857-dd852f0619b0)
+
+-   As colunas com maior impacto no modelo:
+    -   ![image](https://github.com/user-attachments/assets/cce9903f-fa7a-4c58-86a9-1e82ed076c8e)
+
 
 ### 4. Prever
 
--   Use o modelo treinado para fazer previsões de estoque.
--   Exporte os resultados e analise as previsões geradas.
--   Documente suas conclusões e qualquer insight obtido a partir das previsões.
+-   Como os itens analisados não são para pronta entrega a movimentação de estoque permite itens com estoque negativo.
+-   No dataset de movimentação de estoque foi identificado que o item 13 tem histórico de estoque negativo.
+-   Ao analisar as previsões de compra foi identificado uma previsão que ainda manteria um histórico de estoque negativo
+  -  ![image](https://github.com/user-attachments/assets/d42491cf-ecf4-4696-83db-fd7afc96810c)
 
-## 🤔 Dúvidas?
+-   Como as colunas ESTOQUE_INCIAL e ESTOQUE_FINAL são colunas calculadas eo baixo impacto das colunas ESTOQUE_SEGURANCA e COMPRA_MINIMA foi decido fazer outro treinamento de modelo considerando apenas as colunas:
 
-Esperamos que esta experiência tenha sido enriquecedora e que você tenha aprendido mais sobre Machine Learning aplicado a problemas reais. Se tiver alguma dúvida, não hesite em abrir uma issue neste repositório ou entrar em contato com a equipe da DIO.
+    - ID_PRODUTO;
+    - DATA_MOVIMENTACAO;
+    - QUANTIDADE_COMPRA;
+    - QUANTIDADE_VENDA;
+    - PRECO_VENDA
+
