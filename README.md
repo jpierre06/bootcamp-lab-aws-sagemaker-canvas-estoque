@@ -62,6 +62,9 @@ Antes de começar, certifique-se de ter uma conta na AWS. Se precisar de ajuda p
 -   Ao analisar as previsões de compra foi identificado uma previsão que ainda manteria um histórico de estoque negativo
   -  ![image](https://github.com/user-attachments/assets/d42491cf-ecf4-4696-83db-fd7afc96810c)
 
+
+### 5. Construir/Treinar
+
 -   Como as colunas ESTOQUE_INCIAL e ESTOQUE_FINAL são colunas calculadas eo baixo impacto das colunas ESTOQUE_SEGURANCA e COMPRA_MINIMA foi decido fazer outro treinamento de modelo considerando apenas as colunas:
 
     - ID_PRODUTO;
@@ -70,3 +73,17 @@ Antes de começar, certifique-se de ter uma conta na AWS. Se precisar de ajuda p
     - QUANTIDADE_VENDA;
     - PRECO_VENDA
 
+
+### 6. Analisar
+
+-   O novo modelo obteve as seguintes métricas de acuracidade:
+    - ![image](https://github.com/user-attachments/assets/f3858b21-52c9-458f-aaf2-544faf90d893)
+
+    Em comparação com o modelo anterior houve uma piora em todos as métricas
+
+-   As colunas com maior impacto no modelo:
+    -   ![image](https://github.com/user-attachments/assets/92072fdf-4465-4450-bf6e-7849b2df84bc)
+
+ 
+ -   A ferramenta apresentou erro de recursos impossibilitando a contunuidade da análise:
+    - ![image](https://github.com/user-attachments/assets/06736958-5136-41df-bda5-107dc447c0ec)
